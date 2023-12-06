@@ -21,25 +21,25 @@ int (*get_type_funct(const char *arg))(char *, int, va_list){
 
 /*Funct to comprobate a correct _printf ->*/
 int correct_printf(const char *format, char *buffer)
-{
+    {
     int percent_char = _strchr(format);
 
 	if (!format || !buffer)
         {
-        printf("\nif format\n");
-		return 1;
+        fprintf(stderr, "The value is NULL.\n");
+		exit (0);
         }
     
     else if (format[percent_char] == '%' && verify_format(format[percent_char + 1]) == 1)
         {
-            printf("EL FORMATO INGRESADO ES INCORRECTO");
-            return 1;
+            fprintf(stderr, "EL FORMATO INGRESADO ES INCORRECTO.\n");
+            exit (0);
         }
 
 	else
         {
         printf("\nCORRECT CHECK ->\n");
-		return (0);
+		return (1);
         }
 
 }
@@ -56,6 +56,7 @@ else
 }
 
 int program_closure(char *buffer, int counter, va_list args){
+    /*buffer[counter] = '\0';*/
     write (1, buffer, counter);
     free (buffer);
     va_end (args);

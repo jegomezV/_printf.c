@@ -5,21 +5,17 @@ const char *format = String to print.*/
 
 int _printf(const char *format, ...)
 {
-    va_list args;
-    int i = 0;
-    int counter = 0;
-    char *buffer;
     int (*f)(char *, int, va_list);
+    va_list args;
+
+    int i = 0, counter = 0;
+
     size_t len_buffer = _strlen(format);
-    buffer = malloc(len_buffer);
+    char *buffer = malloc(len_buffer);
 
     va_start(args, format);
 
-    if (correct_printf(format, buffer) == 1)
-        {
-        fprintf(stderr, "ERROR\n");
-        exit(0);
-        }
+    if (correct_printf(format, buffer))
 
     for (; i <= _strlen(format); i++){
 
